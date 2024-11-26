@@ -6,6 +6,7 @@ type NestedExample struct {
 	Name    string
 	Age     int `pp:"-"` // This field will be skipped
 	Email   string
+	x string
 	Address struct {
 		City   string
 		VV     []string
@@ -49,6 +50,7 @@ func main() {
 
 	somevar := 3
 	pp.Print(ex)
+	pp.Print(&ex)
 	pp.Print(somevar)
 	pp.Print(3)
 }

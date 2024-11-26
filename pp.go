@@ -77,7 +77,11 @@ func flattenStruct(prefix string, v interface{}, result map[string]interface{}) 
 			if prefix != "" {
 				fieldName = prefix + "." + fieldName
 			}
-			flattenStruct(fieldName, val.Field(i).Interface(), result)
+
+			if val.Field(i).CanInterface() {
+				flattenStruct(fieldName, val.Field(i).Interface(), result)
+			}
+
 		}
 	case reflect.Map:
 		for _, key := range val.MapKeys() {
